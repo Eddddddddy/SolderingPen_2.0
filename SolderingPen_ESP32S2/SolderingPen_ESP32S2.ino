@@ -269,8 +269,7 @@ void setup() {
   sleepmillis = millis();
 
   // long beep for setup completion 安装完成时长哔哔声
-  beep();
-  beep();
+  beep(500000, 880);
   //  delay(2000);
   Serial.println("Soldering Pen");
   // #elif defined(LIS)
@@ -342,7 +341,7 @@ void ROTARYCheck() {
   if (!c && c0) {
     delay(10);
     if (digitalRead(BUTTON_PIN) == c) {
-      beep();
+      beep(100, 880);
       buttonmillis = millis();
       delay(10);
       while ((!digitalRead(BUTTON_PIN)) && ((millis() - buttonmillis) < 500))
@@ -381,7 +380,7 @@ void ROTARYCheck() {
     goneSeconds = (millis() - boostmillis) / 1000;
     if (goneSeconds >= timeOfBoost) {
       inBoostMode = false;  // stop boost mode 停止升温模式
-      beep();  // beep if boost mode is over 如果升温模式结束，会发出蜂鸣声
+      beep(100, 880);  // beep if boost mode is over 如果升温模式结束，会发出蜂鸣声
       beepIfWorky = true;  // beep again when working temperature is reached
                            // 当达到工作温度，会发出蜂鸣声
     }
@@ -406,7 +405,10 @@ void SLEEPCheck() {
               CONTROL_CHANNEL,
               constrain(HEATER_ON, 0, limit));  // then start the heater right
                                                 // now 那现在就启动加热器
-        beep();              // beep on wake-up
+        beep(100, 880);              // beep twice on wake-up
+        delayMicroseconds(100);
+        beep(100, 880);              
+        delayMicroseconds(100);
         beepIfWorky = true;  // beep again when working temperature is reached
                              // 当达到工作温度，会发出蜂鸣声
       }
@@ -420,12 +422,12 @@ void SLEEPCheck() {
     goneSeconds = (millis() - sleepmillis) / 1000;
     if ((!inSleepMode) && (time2sleep > 0) && (goneSeconds >= time2sleep)) {
       inSleepMode = true;
-      beep();
+      beep(100, 880);
     } else if ((!inOffMode) && (time2off > 0) &&
                ((goneSeconds / 60) >= time2off)) {
       inOffMode = true;
       u8g2.setPowerSave(1);
-      beep();
+      beep(100, 880);
     }
   }
 }
@@ -560,7 +562,7 @@ void SENSORCheck() {
   // 温度在工作范围内可设置状态变量;当工作温度刚刚达到时，会发出蜂鸣声
   gap = abs(SetTemp - CurrentTemp);
   if (gap < 5) {
-    if (!isWorky && beepIfWorky) beep();
+    if (!isWorky && beepIfWorky) beep(100, 880);
     isWorky = true;
     beepIfWorky = false;
   } else
@@ -572,7 +574,7 @@ void SENSORCheck() {
   if (!TipIsPresent &&
       (ShowTemp < 500)) {  // new tip inserted ? 新的烙铁头插入？
     ledcWrite(CONTROL_CHANNEL, HEATER_OFF);  // shut off heater 关闭加热器
-    beep();                                  // beep for info
+    beep(100, 880);                                  // beep for info
     TipIsPresent = true;  // tip is present now 烙铁头已经存在
     ChangeTipScreen();  // show tip selection screen 显示烙铁头选择屏幕
     updateEEPROM();     // update setting in EEPROM EEPROM的更新设置
@@ -644,13 +646,14 @@ void Thermostat() {
 }
 
 // creates a short beep on the buzzer 在蜂鸣器上创建一个短的哔哔声
-void beep() {
+void beep(uint32_t us, uint16_t frequency) {
   if (beepEnable) {
-    for (uint8_t i = 0; i < 255; i++) {
+    uint32_t period = 1000000 / ((uint32_t)frequency * 2);
+    for (uint32_t t = 0; t < us; t += period * 2) {
       digitalWrite(BUZZER_PIN, HIGH);
-      delayMicroseconds(125);
+      delayMicroseconds(period);
       digitalWrite(BUZZER_PIN, LOW);
-      delayMicroseconds(125);
+      delayMicroseconds(period);
     }
   }
 }
@@ -758,7 +761,7 @@ void MainScreen() {
 // setup screen 设置屏幕
 void SetupScreen() {
   ledcWrite(CONTROL_CHANNEL, HEATER_OFF);  // shut off heater
-  beep();
+  beep(100000, 880);
   uint16_t SaveSetTemp = SetTemp;
   uint8_t selection = 0;
   bool repeat = true;
@@ -989,7 +992,7 @@ uint8_t MenuScreen(const char *Items[][language_types], uint8_t numberOfItems,
     }
   } while (digitalRead(BUTTON_PIN) || lastbutton);
 
-  beep();
+  beep(100000, 880);
   return selected;
 }
 
@@ -1012,7 +1015,7 @@ void MessageScreen(const char *Items[][language_types], uint8_t numberOfItems) {
       lastbutton = false;
     }
   } while (digitalRead(BUTTON_PIN) || lastbutton);
-  beep();
+  beep(100000, 880);
 }
 
 // input value screen 输入值屏幕
@@ -1047,7 +1050,7 @@ uint16_t InputScreen(const char *Items[][language_types]) {
     }
   } while (digitalRead(BUTTON_PIN) || lastbutton);
 
-  beep();
+  beep(100000, 880);
   return value;
 }
 
@@ -1086,7 +1089,7 @@ void InfoScreen() {
     }
   } while (digitalRead(BUTTON_PIN) || lastbutton);
 
-  beep();
+  beep(100000, 880);
 }
 
 // change tip screen 改变烙铁头屏幕
@@ -1132,7 +1135,7 @@ void ChangeTipScreen() {
     }
   } while (digitalRead(BUTTON_PIN) || lastbutton);
 
-  beep();
+  beep(100000, 880);
   CurrentTip = selected;
 }
 
@@ -1187,7 +1190,7 @@ void CalibrationScreen() {
     } while (digitalRead(BUTTON_PIN) || lastbutton);
 
     CalTempNew[CalStep] = getRotary();
-    beep();
+    beep(100000, 880);
     delay(10);
   }
 
@@ -1247,7 +1250,7 @@ void InputNameScreen() {
       }
     } while (digitalRead(BUTTON_PIN) || lastbutton);
     TipName[CurrentTip][digit] = value;
-    beep();
+    beep(100000, 880);
     delay(10);
   }
   TipName[CurrentTip][TIPNAMELENGTH - 1] = 0;
