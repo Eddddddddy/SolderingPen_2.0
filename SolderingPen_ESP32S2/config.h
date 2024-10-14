@@ -67,7 +67,7 @@
 #define BEEP_ENABLE       true  // enable/disable buzzer
 #define VOLTAGE_VALUE     3     // 电压值
 #define QC_ENABLE         false // enable/disable QC3.0
-#define MAINSCREEN        1     // type of main screen (0: big numbers; 1: more infos)
+#define MAINSCREEN        1     // type of main screen (0: big numbers; 1: more infos; 2: high density)
 
 // EEPROM identifier
 #define EEPROM_SIZE       1024

@@ -42,15 +42,10 @@ const char *ControlTypeItems[][language_types] = { "温控类型", "溫控類型
                                                    "非PID", "非PID", "Non-PID",
                                                    "PID", "PID", "PID" };
 const char *MainScreenItems[][language_types] = {
-  "主屏幕",
-  "主屏幕",
-  "Main Screen",
-  "大数字",
-  "大數字",
-  "Big Number",
-  "更多信息",
-  "更多信息",
-  "More Info",
+  "主屏幕", "主屏幕", "Main Screen",
+  "大数字", "大數字", "Big Number",
+  "更多信息", "更多信息", "More Info",
+  "高密度", "高密度", "High Density",
 };
 const char *StoreItems[][language_types] = { "存储设置?", "存儲設置?", "Save?",
                                              "否", "否", "No",
@@ -96,7 +91,7 @@ const char *MaxTipMessage[][language_types] = { "警告", "警告", "Warning",
                                                 "最大数量", "最大數量", "maximum number",
                                                 "的烙铁头!", "的烙鐵頭!", "of tips!" };
 
-const char *txt_set_temp[] = { "设温:", "設溫:", "SET:" };
+const char *txt_set_temp[] = { "设温", "設溫", "SET" };
 const char *txt_error[] = { "错误", "錯誤", "ERROR" };
 const char *txt_off[] = { "关闭", "關閉", "OFF" };
 const char *txt_sleep[] = { "休眠", "休眠", "SLEEP" };
