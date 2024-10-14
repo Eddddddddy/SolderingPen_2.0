@@ -1,4 +1,11 @@
 # Songguo PTS200 
+## Fork-specific Enhancements
+1. Spanish language support
+
+2. Better buzzer sound and functions
+
+3. High density main screen
+
 ## Introduction
 1. PD3.0 and QC3 fast charge protocol
 
