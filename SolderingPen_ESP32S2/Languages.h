@@ -6,20 +6,21 @@ const char *SetupItems[][language_types] = { "菜单设置", "菜單設置", "Se
                                              "烙铁头设置", "烙鐵頭設置", "Tip Settings", "Punta",
                                              "温度设置", "溫度設置", "Temp Settings", "Temperatura",
                                              "时间设置", "時間設置", "Timer Settings", "Temporizadores",
-                                             "主屏幕", "主屏幕", "Main Screen", "Pant. Principal",
+                                             "主屏幕", "主屏幕", "Main Screen", "Pnt. Principal",
                                              "信息", "信息", "Information", "Información",
                                              "电压设置", "電壓設置", "Voltage", "Voltaje",
                                              "QC", "QC", "QC", "QC",
                                              "蜂鸣器", "蜂鳴器", "Buzzer", "Zumbador",
-                                             "恢复默认设置", "恢復默認設置", "Restore Config", "Restaurar Config",
-                                             "更新版本", "更新版本", "Update Firmware", "Act. de Firmware",
+                                             "恢复默认设置", "恢復默認設置", "Restore Config", "Restaurar Conf.",
+                                             "更新版本", "更新版本", "Update Firmware", "Act. Firmware",
                                              "Languages", "Languages", "Languages", "Idiomas",
-                                             "切换左右手", "切换左右手", "L/R Hand", "Mano Dominante",
+                                             "切换左右手", "切换左右手", "L/R Hand", "Cambiar Mano",
                                              "返回", "返回", "Return", "Volver" };
 const char *LanguagesItems[][language_types] = { "Languages", "Languages", "Languages", "Idiomas",
-                                                 "简体中文", "简体中文", "zh-CN", "es-CL",
-                                                 "繁体中文", "繁体中文", "zh-TW", "es-CL",
-                                                 "English", "English", "English", "Español" };
+                                                 "简体中文", "简体中文", "zh-CN", "zh-CN",
+                                                 "繁体中文", "繁体中文", "zh-TW", "zh-TW",
+                                                 "English", "English", "English", "English",
+                                                 "Spanish", "Spanish", "Español", "Español" };
 const char *TipItems[][language_types] = { "烙铁头:", "烙鐵頭:", "Tip:", "Punta:",
                                            "更换烙铁头", "更換烙鐵頭", "Change Tip", "Cambiar Punta",
                                            "校准烙铁头", "校準烙鐵頭", "Calibrate Tip", "Calibrar Punta",
@@ -33,18 +34,18 @@ const char *TempItems[][language_types] = { "温度设置", "溫度設置", "Tem
                                             "提高温度", "提高溫度", "Boost Temp", "Aumentada",
                                             "返回", "返回", "Return", "Volver" };
 const char *TimerItems[][language_types] = { "时间设置", "時間設置", "Timer Settings", "Temporizadores",
-                                             "休眠时间", "休眠時間", "Sleep Timer", "Temp. Modo Sueño",
-                                             "关闭时间", "關閉時間", "Shutdown Timer", "Temp. Apagado",
-                                             "提温时间", "提溫時間", "Boost Timer", "Temp. Aumento",
-                                             "唤醒阈值", "唤醒閾值", "Wake Threshold", "Umbral Encendido",
+                                             "休眠时间", "休眠時間", "Sleep Timer", "Tempor. Sueño",
+                                             "关闭时间", "關閉時間", "Shutdown Timer", "Tempr. Apagado",
+                                             "提温时间", "提溫時間", "Boost Timer", "Tempr. Aumento",
+                                             "唤醒阈值", "唤醒閾值", "Wake Threshold", "Umbral Encend.",
                                              "返回", "返回", "Return", "Volver" };
 const char *ControlTypeItems[][language_types] = { "温控类型", "溫控類型", "Control Type", "Tipo de Control",
                                                    "非PID", "非PID", "Non-PID", "No PID",
                                                    "PID", "PID", "PID", "PID" };
 const char *MainScreenItems[][language_types] = {
-  "主屏幕", "主屏幕", "Main Screen", "Pant. Principal",
-  "大数字", "大數字", "Big Number", "Números Grandes",
-  "更多信息", "更多信息", "More Info", "Más Información",
+  "主屏幕", "主屏幕", "Main Screen", "Pnt. Principal",
+  "大数字", "大數字", "Big Number", "Núm. Grandes",
+  "更多信息", "更多信息", "More Info", "Más Info",
   "高密度", "高密度", "High Density", "Alta Densidad",
 };
 const char *StoreItems[][language_types] = { "存储设置?", "存儲設置?", "Save?", "¿Guardar?",
@@ -72,11 +73,11 @@ const char *DefaultTempItems[][language_types] = { "默认温度", "默認溫度
                                                    "deg C", "deg C", "deg C", "grados C" };
 const char *SleepTempItems[][language_types] = { "休眠温度", "休眠溫度", "Sleep Temp", "Temp. Sueño",
                                                  "deg C", "deg C", "deg C", "grados C" };
-const char *BoostTempItems[][language_types] = { "提高温度", "提高溫度", "Boost Temp", "Temp. Aumento",
+const char *BoostTempItems[][language_types] = { "提高温度", "提高溫度", "Boost Temp", "Temp. Aumentada",
                                                  "deg C", "deg C", "deg C", "grados C" };
 const char *SleepTimerItems[][language_types] = { "休眠时间", "休眠時間", "Sleep Timer", "Tempor. Sueño",
                                                   "秒", "秒", "sec", "seg" };
-const char *WAKEUPthresholdItems[][language_types] = { "唤醒阈值", "唤醒閾值", "Wake Threshold", "Umbral Despertar",
+const char *WAKEUPthresholdItems[][language_types] = { "唤醒阈值", "唤醒閾值", "Wake Threshold", "Umbral Encend.",
                                                        "mg", "mg", "mg", "mg" };
 const char *OffTimerItems[][language_types] = { "关闭时间", "關閉時間", "Shutdown Timer", "Tempor. Apagado",
                                                 "分钟", "分鐘", "min", "min" };

@@ -696,7 +696,7 @@ void MainScreen() {
       }
 
 
-      u8g2.setFont(u8g2_font_unifont_t_chinese3);
+      u8g2.setFont(u8g2_font_unifont_tf);
       u8g2.setFontPosTop();
       
       // draw text frame
@@ -706,10 +706,10 @@ void MainScreen() {
       u8g2.drawUTF8(0,   48 + SCREEN_OFFSET,  "Vbus         V");
       
       // draw values and status of tip
-      u8g2.setFont(language > 1 ? u8g2_font_unifont_t_chinese3 : PTS200_16);
+      u8g2.setFont(language > 1 ? u8g2_font_unifont_tf : PTS200_16);
       char *which_str = (char*)txt_hold[language];
       if (ShowTemp > 500) {
-        which_str = (char*)txt_error[language];
+        which_str = (char*)txt_error[language];        
       }
       else if (inOffMode || inLockMode) {
         which_str = (char*)txt_off[language];        
@@ -728,7 +728,7 @@ void MainScreen() {
       }
       u8g2.drawUTF8(0,   32 + SCREEN_OFFSET, which_str);
       
-      u8g2.setFont(u8g2_font_unifont_t_chinese3);
+      u8g2.setFont(u8g2_font_unifont_tf);
       u8g2.setCursor(56, 0 + SCREEN_OFFSET);
       u8g2.print(lastSENSORTmp, 2);
       u8g2.setCursor(56, 16 + SCREEN_OFFSET);
@@ -747,19 +747,19 @@ void MainScreen() {
       // u8g2.print(F("nihao"));
       //  draw setpoint temperature
       u8g2.setFont(PTS200_16);
-      if(language == 2){
-        u8g2.setFont(u8g2_font_unifont_t_chinese3);
+      if(language > 1){
+        u8g2.setFont(u8g2_font_unifont_tf);
       }
       u8g2.setFontPosTop();
       //    u8g2.drawUTF8(0, 0 + SCREEN_OFFSET, "设温:");
       u8g2.drawUTF8(0, 0 + SCREEN_OFFSET, txt_set_temp[language]);
       u8g2.setCursor(40, 0 + SCREEN_OFFSET);
-      u8g2.setFont(u8g2_font_unifont_t_chinese3);
+      u8g2.setFont(u8g2_font_unifont_tf);
       u8g2.print(Setpoint, 0);
    
       u8g2.setFont(PTS200_16);
-      if(language == 2){
-        u8g2.setFont(u8g2_font_unifont_t_chinese3);
+      if(language > 1){
+        u8g2.setFont(u8g2_font_unifont_tf);
       }
       // draw status of heater 绘制加热器状态
       u8g2.setCursor(96, 0 + SCREEN_OFFSET);
@@ -778,7 +778,7 @@ void MainScreen() {
       else
         u8g2.print(txt_hold[language]);
    
-      u8g2.setFont(u8g2_font_unifont_t_chinese3);
+      u8g2.setFont(u8g2_font_unifont_tf);
       // rest depending on main screen type 休息取决于主屏幕类型
       if (MainScrType) {
         // draw current tip and input voltage 绘制当前烙铁头及输入电压
@@ -1032,8 +1032,8 @@ uint8_t MenuScreen(const char *Items[][language_types], uint8_t numberOfItems,
     u8g2.firstPage();
     do {
       u8g2.setFont(PTS200_16);
-    if(language == 2){
-      u8g2.setFont(u8g2_font_unifont_t_chinese3);
+    if(language > 1){
+      u8g2.setFont(u8g2_font_unifont_tf);
     }
       u8g2.setFontPosTop();
       u8g2.drawUTF8(0, 0 + SCREEN_OFFSET, Items[0][language]);
@@ -1063,8 +1063,8 @@ void MessageScreen(const char *Items[][language_types], uint8_t numberOfItems) {
   u8g2.firstPage();
   do {
     u8g2.setFont(PTS200_16);
-        if(language == 2){
-      u8g2.setFont(u8g2_font_unifont_t_chinese3);
+        if(language > 1){
+      u8g2.setFont(u8g2_font_unifont_tf);
     }
     u8g2.setFontPosTop();
     for (uint8_t i = 0; i < numberOfItems; i++)
@@ -1089,8 +1089,8 @@ uint16_t InputScreen(const char *Items[][language_types]) {
     u8g2.firstPage();
     do {
       u8g2.setFont(PTS200_16);
-          if(language == 2){
-      u8g2.setFont(u8g2_font_unifont_t_chinese3);
+          if(language > 1){
+      u8g2.setFont(u8g2_font_unifont_tf);
     }
       u8g2.setFontPosTop();
       u8g2.drawUTF8(0, 0 + SCREEN_OFFSET, Items[0][language]);
@@ -1126,8 +1126,8 @@ void InfoScreen() {
     u8g2.firstPage();
     do {
       u8g2.setFont(PTS200_16);
-          if(language == 2){
-      u8g2.setFont(u8g2_font_unifont_t_chinese3);
+          if(language > 1){
+      u8g2.setFont(u8g2_font_unifont_tf);
     }
       u8g2.setFontPosTop();
       u8g2.setCursor(0, 0 + SCREEN_OFFSET);
@@ -1176,8 +1176,8 @@ void ChangeTipScreen() {
     u8g2.firstPage();
     do {
       u8g2.setFont(PTS200_16);
-          if(language == 2){
-      u8g2.setFont(u8g2_font_unifont_t_chinese3);
+          if(language > 1){
+      u8g2.setFont(u8g2_font_unifont_tf);
     }
       u8g2.setFontPosTop();
       //      strcpy_P(F_Buffer, PSTR("选择烙铁头"));
@@ -1220,8 +1220,8 @@ void CalibrationScreen() {
       u8g2.firstPage();
       do {
         u8g2.setFont(PTS200_16);
-            if(language == 2){
-      u8g2.setFont(u8g2_font_unifont_t_chinese3);
+            if(language > 1){
+      u8g2.setFont(u8g2_font_unifont_tf);
     }
         u8g2.setFontPosTop();
         //        strcpy_P(F_Buffer, PSTR("校准"));
@@ -1293,8 +1293,8 @@ void InputNameScreen() {
       u8g2.firstPage();
       do {
         u8g2.setFont(PTS200_16);
-            if(language == 2){
-      u8g2.setFont(u8g2_font_unifont_t_chinese3);
+            if(language > 1){
+      u8g2.setFont(u8g2_font_unifont_tf);
     }
         u8g2.setFontPosTop();
         u8g2.drawUTF8(0, 0 + SCREEN_OFFSET, txt_enter_tip_name[language]);
